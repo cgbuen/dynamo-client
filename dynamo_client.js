@@ -1,6 +1,4 @@
 var dynamo = exports
-var http   = require("http")
-var https  = require("https")
 var aws4   = require("aws4")
 
 function Database(region, credentials) {
@@ -51,7 +49,8 @@ Database.prototype.request = function(target, data, cb) {
 }
 
 function Request(opts, target, data) {
-  var headers = this.headers = {}
+  var options = this.options = {}
+  var headers = this.headers = this.options.headers = {}
 
   this.host = opts.host
   this.port = opts.port
@@ -61,10 +60,10 @@ function Request(opts, target, data) {
 
   this.body = JSON.stringify(data)
 
-  this.method      = Request.prototype.method
-  this.path        = Request.prototype.path
-  this.maxRetries  = Request.prototype.maxRetries
-  this.contentType = Request.prototype.contentType
+  options.method      = Request.prototype.method
+  options.path        = Request.prototype.path
+  options.maxRetries  = Request.prototype.maxRetries
+  options.contentType = Request.prototype.contentType
 
   headers["Host"] = this.host
   headers["Date"] = new Date().toUTCString()
