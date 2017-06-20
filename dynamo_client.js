@@ -52,8 +52,8 @@ function Request(opts, target, data) {
   var options = this.options = {}
   var headers = this.headers = this.options.headers = {}
 
-  this.host = opts.host
-  this.port = opts.port
+  this.host = this.options = opts.host
+  this.port = this.options = opts.port
   this.http = opts.https ? https : http
 
   if ("agent" in opts) this.agent = opts.agent
