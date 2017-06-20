@@ -79,7 +79,7 @@ Request.prototype.maxRetries  = 10
 Request.prototype.contentType = "application/x-amz-json-1.0"
 
 Request.prototype.send = function(cb) {
-  var request = this.http.request(this, function(res) {
+  var request = this.http.request(this.options, function(res) {
     var json = ""
 
     res.setEncoding("utf8")
